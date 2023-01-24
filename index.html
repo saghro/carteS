@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="main.js"></script> -->
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+    
+    </div>
+   <script> 
+   let names= [ "michlan","kakk","gidgd", "hggfd","hhdifcd","hfuyfudso","vgfgyd","hgjyjfv","tdyrsss"];
+    let rates =[10,20,30];
+    let x = document.createElement ('div');
+    document.body.appendChild(x);
+    x.style.textAlign='center';
+
+
+function createElement(i=1,names,rates){
+    let y = document.createElement('div');
+    let title = document.createElement('h3');
+    let rate = document.createElement('p');
+    let img = document.createElement('img');
+    let head = document.createTextNode('names');
+    let ranke = document.createTextNode('rates');
+    img.src="img.jpeg";
+    title.appendChild(head);
+    rate.appendChild(ranke);
+    y.style.width ="200px";
+    img.style.width="100%";
+    img.style.height="300px";
+    y.style.background="gray";
+    y.style.color="black";
+    y.style.padding="15px";
+    y.style.margin="24px";
+    y.style.display="inline-block";
+    x.appendChild(y);
+    y.appendChild(title);
+    y.appendChild(rate);
+    y.appendChild(img);
+    x.appendChild(y);   
+}
+
+    for(let i= 0; i<3;i++){
+    createElement(i+1,names[i],rates[i]);
+}
+
+   </script>
+
+</body>
+</html>
