@@ -1,0 +1,9 @@
+.productIMG {
+    height: 200px;
+    width: 200px;
+}
+
+.productRoot {
+    display: inline-block;
+    text-align: center;
+}

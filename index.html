@@ -1,54 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <script src="main.js"></script> -->
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div class="main">
-    
+
+    <div id="appRoot">
+
+
     </div>
-   <script> 
-   let names= [ "michlan","kakk","gidgd", "hggfd","hhdifcd","hfuyfudso","vgfgyd","hgjyjfv","tdyrsss"];
-    let rates =[10,20,30];
-    let x = document.createElement ('div');
-    document.body.appendChild(x);
-    x.style.textAlign='center';
 
 
-function createElement(i=1,names,rates){
-    let y = document.createElement('div');
-    let title = document.createElement('h3');
-    let rate = document.createElement('p');
-    let img = document.createElement('img');
-    let head = document.createTextNode('names');
-    let ranke = document.createTextNode('rates');
-    img.src="img.jpeg";
-    title.appendChild(head);
-    rate.appendChild(ranke);
-    y.style.width ="200px";
-    img.style.width="100%";
-    img.style.height="300px";
-    y.style.background="gray";
-    y.style.color="black";
-    y.style.padding="15px";
-    y.style.margin="24px";
-    y.style.display="inline-block";
-    x.appendChild(y);
-    y.appendChild(title);
-    y.appendChild(rate);
-    y.appendChild(img);
-    x.appendChild(y);   
-}
+    <script>
+        var data = [{
+            id: 1,
+            name: "michlan",
+            rate: "10",
+            ImgUrl: "https://th.bing.com/th/id/OIP.Mlge8PQtozJ7NCk61VqvSAHaHa?pid=ImgDet&rs=1",
+            price: 300,
+            qte: 1
+        }, {
+            id: 2,
+            name: "michlan2",
+            rate: "25",
+            ImgUrl: "https://th.bing.com/th/id/R.ef117e1d344621ed6db3a46ea98d6c75?rik=tKOq034%2fXBxpzQ&riu=http%3a%2f%2fcheapniceshoes4sale.com%2f4593-large_default%2fnike-flex-run-2015-Nike-Flex-Run-2015-Mens-Running-Shoes-Wolf-Grey-White-Black-sku-09022005.jpg&ehk=jawFirxA%2bzm6oCZVq4ENw28NxYc%2bF7wugU%2fKhGAA2H8%3d&risl=&pid=ImgRaw&r=0",
+            price: 450,
+            qte: 1
+        }, {
+            id: 3,
+            name: "michlan3",
+            rate: "9",
+            ImgUrl: "https://i.pinimg.com/originals/59/ee/8e/59ee8e2c5d642ef0f0aaaee0fda67984.png",
+            price: 280,
+            qte: 1
+        }]
 
-    for(let i= 0; i<3;i++){
-    createElement(i+1,names[i],rates[i]);
-}
 
-   </script>
+        let appRoot = document.getElementById('appRoot')
+
+        function buildPage() {
+            for (let i = 0; i < data.length; i++) {
+                // je construi la page html
+
+                //je cree le root du produit
+                var productRoot = document.createElement('div')
+                productRoot.setAttribute('class', 'productRoot')
+                    // je crée le title en h1
+                let productTitle = document.createElement('h5')
+
+                productTitle.setAttribute('class', 'productTitle')
+                productTitle.innerHTML = data[i].name
+
+
+
+                // je rajoute l'image
+
+                let productImg = document.createElement('img')
+
+                productImg.setAttribute('src', data[i].ImgUrl)
+                productImg.setAttribute('class', 'productIMG')
+
+                let ProductBtnDelete = document.createElement('button')
+                ProductBtnDelete.setAttribute('class', 'remove')
+                    // ProductBtnDelete.setAttribute('onclick', 'deleteProduct(this)')
+                ProductBtnDelete.innerHTML = "Delete"
+
+                let Qte = document.createElement('input')
+                Qte.setAttribute('class', 'inpt')
+                Qte.setAttribute('type', 'number')
+                Qte.setAttribute('min', '0')
+                Qte.setAttribute('value', '0')
+
+
+                let productPrice = document.createElement('h3')
+
+                productPrice.setAttribute('class', 'productPrice')
+                productPrice.innerHTML = data[i].price
+
+                productRoot.appendChild(productTitle)
+                productRoot.appendChild(productPrice)
+                productRoot.appendChild(Qte);
+                productRoot.appendChild(ProductBtnDelete)
+                productRoot.appendChild(productImg)
+                appRoot.appendChild(productRoot)
+            }
+            let total = document.createElement('input')
+            total.setAttribute('id', 'tt')
+            productRoot.appendChild(total)
+        }
+        buildPage()
+
+        function calculTotal() {
+            var sum = 0;
+            for (var i = 0; i < inputQte.length; i++) {
+                var Quanti = inputQte[i].value
+                var Prix = PrixUnitaire[i].textContent
+                var calcul = (Quanti * Prix)
+                sum += (calcul);
+
+            }
+            document.getElementById('tt').value = sum
+
+
+        }
+
+
+        function deleteProduct(e) {
+            var target = e.target;
+            target.parentNode.parentNode.removeChild(target.parentNode);
+
+            calculTotal()
+        }
+
+        var removeBtn = document.querySelectorAll('.remove');
+        for (var i = 0; i < removeBtn.length; i++) {
+            removeBtn[i].addEventListener("click", deleteProduct);
+        }
+
+        var inputQte = document.querySelectorAll('.inpt');
+        var PrixUnitaire = document.querySelectorAll('.productPrice');
+
+        for (var i = 0; i < inputQte.length; i++) {
+            inputQte[i].addEventListener("change", calculTotal);
+        }
+
+
+
+
+        calculTotal()
+
+
+        function addEvents() {
+
+        }
+    </script>
 
 </body>
+
+</html>
+
 </html>
